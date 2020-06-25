@@ -1,0 +1,40 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <article class="media content-section border-dark pb-4">
+                <img  class="rounded-circle article-img" src="{% static 'homepage/images/me.jpg' %}" alt="">
+                <div class="media-body" id="this">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#" id="hover">Moein</a>
+                    <small class="text-muted">June 20th, 2020</small>
+                </div>
+                <h2><a class="article-title" href="#" id="hover">First Post</a></h2>
+                <img alt="" class="w-75 mx-auto d-block rounded" src="{% static 'homepage/images/bc.jpg' %}"><br>
+                <p class="article-content text-justify">Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+                <a href="" class="btn btn-primary">READ THE FULL ARTICLE</a>
+                </div>
+            </article>
+
+            
+        </div>
+        <div class="col-md-4">
+            <div class="content-section bg-dark rounded">
+            <h3 class="text-white">Sidebar</h3><hr>   
+            <p class='text-white'>Checkout the links you may need
+                <ul class="list-group">
+                <li class="list-group-item list-group-item-light bg-secondary text-white">Latest Events</li>
+                <li class="list-group-item list-group-item-light bg-secondary text-white">Calls for registeration</li>
+                <li class="list-group-item list-group-item-light bg-secondary text-white">etc</li>
+                </ul>
+            </p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+
+
+    
