@@ -1,0 +1,39 @@
+{% extends "homepage/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+        
+            <div class="content-section">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4 text-dark font-weight-bold">Join SICoMS!</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-primary" type="submit">Sign Up</button>
+                    </div>
+                </form>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Already have an account? <a class="ml-2" href="#">Sign In</a>
+                    </small>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="content-section bg-dark rounded">
+            <h3 class="text-white">Sidebar</h3><hr>   
+            <p class='text-white'>Checkout the links you may need
+                <ul class="list-group">
+                <li class="list-group-item list-group-item-light bg-secondary text-white">Latest Events</li>
+                <li class="list-group-item list-group-item-light bg-secondary text-white">Calls for registeration</li>
+                <li class="list-group-item list-group-item-light bg-secondary text-white">etc</li>
+                </ul>
+            </p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
