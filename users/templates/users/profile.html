@@ -1,10 +1,17 @@
 {% extends "homepage/base.html" %}
 {% load crispy_forms_tags %}
 {% block innercontent %}
-  
-            <h1>{{ user.username }}</h1>
-            
-     
+
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.profile.first_name }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+        </div> 
+    </div>    
+
 {% endblock innercontent %}
 {% block foot %}
     <h1></h1>
