@@ -1,3 +1,4 @@
+from PIL import Image
 from django.db import models
 from django.dispatch import receiver
 from django.contrib.auth.models import User
@@ -24,3 +25,13 @@ class Profile(models.Model):
 
     def __repr__(self):
         return f"{self.user.username} Profile"
+    
+    def save(self, *args, **kwargs):
+        super().save()
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            img.thumbnail((300,300))
+            img.save(self.image.path)
+
