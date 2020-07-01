@@ -1,7 +1,7 @@
 {% extends "homepage/base.html" %}
 {% load static %}
 {% block innercontent %}
-
+    <h1 class="mb-3">Events By {{view.kwargs.username}} ({{page_obj.paginator.count}})</h1>
 
     {% for event in events %}
         <article class="media content-section border-dark pb-4">
@@ -40,8 +40,3 @@
 
     
 {% endblock innercontent %}
-
-
-
-
-    
