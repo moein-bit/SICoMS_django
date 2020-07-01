@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 class Event(models.Model):
 
@@ -23,3 +25,6 @@ class Event(models.Model):
 
     def __repr__(self):
         return f"the events title is: {self.title}"
+    
+    def get_absolute_url(self):
+        return reverse('event-detail', kwargs={'pk': self.pk})

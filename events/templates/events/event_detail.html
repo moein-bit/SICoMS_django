@@ -1,0 +1,31 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block innercontent %}
+    
+    <article class="media content-section border-dark pb-4">
+        <img  class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="">
+        <div class="media-body" id="this">
+        <div class="article-metadata">
+            <a class="mr-2" href="#" id="hover">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            {% if object.author == user %}
+                <div>
+                    <a href="{% url 'event-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+                    <a href="{% url 'event-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+                </div>
+            {% endif %} 
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <img alt="" class="w-75 mx-auto d-block rounded" src="{{ event.photo.url }}"><br>
+        <p class="article-content text-justify">{{ object.summary }}</p>
+        <p class="article-content text-justify">{{ object.explanation }}</p>
+        <a href="{% url 'events-home' %}" class="btn btn-dark">Let's go back to events page</a>
+        </div>
+    </article>
+
+{% endblock innercontent %}
+
+
+
+
+    

@@ -1,0 +1,23 @@
+{% extends "homepage/base.html" %}
+{% load crispy_forms_tags %}
+{% block innercontent %}
+
+
+
+    <div class="content-section">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-dark font-weight-bold">Create A New Event!</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-primary" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    
+{% endblock innercontent %}

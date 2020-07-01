@@ -1,0 +1,25 @@
+{% extends "homepage/base.html" %}
+{% block innercontent %}
+
+
+
+    <div class="content-section">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-dark font-weight-bold">Delete Post</legend>
+                <h2>Are you sure you want to delete the event "{{ object.title }}"?</h2>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+                <a class="btn btn-outline-secondary" href="{% url 'event-detail' object.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+
+
+    
+{% endblock innercontent %}
+{% block foot %}
+{% endblock foot %}
