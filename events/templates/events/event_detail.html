@@ -17,8 +17,8 @@
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
         <img alt="" class="w-75 mx-auto d-block rounded" src="{{ event.photo.url }}"><br>
-        <p class="article-content text-justify">{{ object.summary }}</p>
-        <p class="article-content text-justify">{{ object.explanation }}</p>
+        <p class="article-content text-justify">{{ object.summary|safe}}</p>
+        <p class="article-content text-justify">{{ object.explanation|safe }}</p>
         <a href="{% url 'events-home' %}" class="btn btn-dark">Let's go back to events page</a>
         </div>
     </article>

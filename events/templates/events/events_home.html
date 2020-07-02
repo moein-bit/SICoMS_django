@@ -13,7 +13,7 @@
             </div>
             <h2><a class="article-title" href="{% url 'event-detail' event.id %}" id="hover">{{ event.title }}</a></h2>
             <img alt="" class="w-75 mx-auto d-block rounded" src="{{ event.photo.url }}"><br>
-            <p class="article-content text-justify">{{ event.summary }}</p>
+            <p class="article-content text-justify">{{ event.summary|safe }}</p>
             <a href="{% url 'event-detail' event.id %}" class="btn btn-primary">READ THE FULL ARTICLE</a>
             </div>
         </article>

@@ -41,7 +41,8 @@ urlpatterns = [
         name="password_reset_complete"),
     path('', include('homepage.urls')),
     path('register/', user_view.register, name='register'),
-    path('profile/', user_view.profile, name='profile')
+    path('profile/', user_view.profile, name='profile'),
+    path('tinymce/', include('tinymce.urls')),
 ]
 
 if settings.DEBUG:

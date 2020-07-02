@@ -23,6 +23,8 @@ class Event(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    
+
     def __repr__(self):
         return f"the events title is: {self.title}"
     
