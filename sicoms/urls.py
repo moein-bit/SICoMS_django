@@ -42,6 +42,9 @@ urlpatterns = [
     path('', include('homepage.urls')),
     path('register/', user_view.register, name='register'),
     path('profile/', user_view.profile, name='profile'),
+    path('email-confirmation/', user_view.email_confirmation, name='email-confirmation'),
+    path('activate/<slug:uidb64>/<slug:token>/', 
+          user_view.activate, name='activate'),
     path('tinymce/', include('tinymce.urls')),
 ]
 

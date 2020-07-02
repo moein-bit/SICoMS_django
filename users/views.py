@@ -3,7 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth import login, authenticate
-
+from django.contrib.auth.models import User
+###
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from .tokens import account_activation_token
 
 def register(request):
     if request.method == "POST":
@@ -17,18 +23,48 @@ def register(request):
             user.profile.semester = form.cleaned_data.get('semester')
             user.profile.university = form.cleaned_data.get('university')
             user.profile.student_id = form.cleaned_data.get('student_id')
+
+            user.is_active = False
             user.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            email = form.cleaned_data.get('email')
-            user = authenticate(username=username, password=password, email=email)
-            messages.success(request, f"Dear {user.profile.first_name}, Your account has been created! Log in by your username: {username}")
-            return redirect('login')
+            current_site = get_current_site(request)
+            subject = 'SICoMS account confirmation'
+            message = render_to_string('users/activation_request.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject, message)
+            messages.success(request, f"Dear {user.profile.first_name}, Your account has been created!")
+            return redirect('email-confirmation')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form,
                                                    'title': 'Registeration'})
 
+def email_confirmation(request):
+    return render(request,
+                  'users/email_confiramtion.html',
+                  context={'title': "Email Confirmation"})
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.profile.signup_confirmation = True
+        user.save()
+        login(request, user)
+        messages.success(request, "Your account is activated! Welcome to SICoMS!")
+        return redirect('homepage-home')
+    else:
+        return render(request,
+                      'users/activation_failed.html',
+                      context={"title": "Activation Failed"})
 
 
 

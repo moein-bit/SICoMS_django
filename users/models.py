@@ -22,12 +22,13 @@ class Profile(models.Model):
     semester = models.SmallIntegerField(null=True)
     student_id = models.CharField(max_length=12, null=True)
     university = models.CharField(max_length=60, null=True)
+    signup_confirmation = models.BooleanField(default=False)
 
     def __repr__(self):
         return f"{self.user.username} Profile"
     
     def save(self, *args, **kwargs):
-        super().save()
+        super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
 
