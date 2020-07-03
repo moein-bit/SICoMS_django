@@ -37,15 +37,14 @@
         </div>
         </div>
         <div class="col-md-4">
-        <div class="card" style="width: 100%;">
-            <img src="{% static 'homepage/images/wwr.jpg' %}" class="card-img-top" alt="..." style="height: 15em;">
-            <div class="card-body">
-            <h5 class="card-title">Who We Are</h5>
-            <p class="card-text">Let's read about us. You can find many helpful info here. Also, you can tell us your suggestions and comments</p>
-            <a href="{% url 'about-page' %}" class="btn btn-primary">About Us</a>
-            
+            <div class="card" style="width: 100%;">
+                <img src="{% static 'homepage/images/workshop2.png' %}" class="card-img-top" alt="..." style="height: 15em;">
+                <div class="card-body">
+                    <h5 class="card-title">Workshops</h5>
+                    <p class="card-text">See what wokshops are available. Workshop are the true place you can learn some topic deeply from expert people</p>
+                    <a href="{% url 'workshops-home' %}" class="btn btn-primary">Workshops Page</a>
+                </div>
             </div>
-        </div>
         </div>
         <div class="col-md-4 text-white">
         <div class="jumbotron bg-dark border border-dark">
@@ -63,5 +62,18 @@
             <br>
         </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="width: 100%;">
+                <img src="{% static 'homepage/images/wwr.jpg' %}" class="card-img-top" alt="..." style="height: 15em;">
+                <div class="card-body">
+                    <h5 class="card-title">Who We Are</h5>
+                    <p class="card-text">Let's read about us. You can find many helpful info here. Also, you can tell us your suggestions and comments</p>
+                    <a href="{% url 'about-page' %}" class="btn btn-primary">About Us</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 {% endblock %}
