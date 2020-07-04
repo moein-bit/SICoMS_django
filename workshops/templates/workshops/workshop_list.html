@@ -1,15 +1,15 @@
 {% extends "homepage/base.html" %}
 {% load static %}
-{% block innercontent %}
+{% block content %}
 
     {% for workshop in workshops %}
         {% if forloop.first %}<div class="row mb-5">{% endif %}
-        <div class="col-md-6">
-            <div class="card" style="width: 18rem;">
+        <div class="col-md-4">
+            <div class="card" style="width: 20rem;">
                 <img class="card-img-top" src="{{ workshop.photo.url }}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{ workshop.title }}</h5>
-                  <p class="card-text">{{ workshop.description }}</p>
+                  <p class="card-text">{{ workshop.summary|safe }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">When: {{ workshop.when }}</li>
@@ -17,12 +17,11 @@
                   <li class="list-group-item">Cost: {{ workshop.cost }}</li>
                 </ul>
                 <div class="card-body">
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+                  <a href="{% url 'workshop-detail' workshop.id %}" class="btn btn-dark">Info and Registration</a>
                 </div>
               </div>
         </div>
-        {% if forloop.counter|divisibleby:2 %}</div><div class="row">{% endif %}
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
         {% if forloop.last %}</div>{% endif %}
     {% endfor %}
     
@@ -48,7 +47,8 @@
             <a class="btn btn-outline-dark mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
         {% endif %}
     {% endif %}
-{% endblock innercontent %}
+
+{% endblock content %}
 {% block foot %}
 {% endblock foot %}
 

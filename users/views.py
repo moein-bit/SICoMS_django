@@ -62,6 +62,7 @@ def activate(request, uidb64, token):
         messages.success(request, "Your account is activated! Welcome to SICoMS!")
         return redirect('homepage-home')
     else:
+        messages.error(request, "Something went wrong!")
         return render(request,
                       'users/activation_failed.html',
                       context={"title": "Activation Failed"})
