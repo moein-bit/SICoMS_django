@@ -36,8 +36,9 @@
 
       <div class="navbar-nav">
         {% if user.is_authenticated %}
+        <img src="{{ user.profile.image.url }}" width="30" height="30" class="rounded-circle mt-1" alt="">
+        <a class="nav-link" href="{% url 'profile' %}" id="hover">{{ user.profile.first_name }}</a>
         <a class="nav-link" href="{% url 'event-create' %}" id="hover">New Event</a>
-        <a class="nav-link" href="{% url 'profile' %}" id="hover">Profile</a>
         <a class="nav-link" href="{% url 'logout' %}" id="hover">Logout</a>
         {% else %}
         <a class="nav-link" href="{% url 'login' %}" id="hover">Login</a>
